@@ -2,23 +2,31 @@
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
 
+//canvas.width = 480;
+//canvas.height = 320;
+
+canvas.width = document.querySelector("body").offsetWidth;
+canvas.height = document.querySelector("body").offsetHeight;
+var unidadeProporcaoLargura = canvas.width/480;
+var unidadeProporcaoAltura = canvas.height/320;
+
 //Definição dos eixos
 var x = canvas.width / 2;
 var y = canvas.height - 30; 
 
 //Definição das variáveis globais
-var dx = 2;
-var dy = -2;
-var raioBola = 10;
-var baseAltura = 10;
-var baseLargura = 75;
+var dx = 2 * unidadeProporcaoLargura;
+var dy = -2 * unidadeProporcaoAltura;
+var raioBola = 10 * unidadeProporcaoLargura;
+var baseAltura = 10 * unidadeProporcaoLargura;
+var baseLargura = 75 * unidadeProporcaoAltura;
 var baseX = (canvas.width - baseLargura) / 2;
 var pressionouDireita = false;
 var pressionouEsquerda = false;
-var contadorLinhasTijolo = 3;
-var contadorColunasTijolo = 5;
-var larguraTijolo = 75;
-var alturaTijolo = 20;
+var larguraTijolo = 75 * unidadeProporcaoAltura;
+var alturaTijolo = 20 * unidadeProporcaoLargura;
+var contadorLinhasTijolo = 3
+var contadorColunasTijolo = Math.round(canvas.width/larguraTijolo - 1);
 var preenchimento = 10;
 var deslocamentoTopo = 30;
 var deslocamentoEsquerda = 30;
@@ -157,8 +165,8 @@ function draw() {
       } else { //Reposiciona a bola e a base para posição inicial caso o jogador tenha vidas restantes
         x = canvas.width / 2;
         y = canvas.height - 30;
-        dx = 2;
-        dy = -2;
+        dx = 10;
+        dy = -10;
         baseX = (canvas.width - baseLargura) / 2;
       }
     }
